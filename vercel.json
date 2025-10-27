@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "coldsendz-nextjs",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ]
+  
+}
