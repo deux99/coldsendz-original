@@ -62,7 +62,7 @@ const UserManagementSection = () => {
 
   const handleCreateUser = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       const token = localStorage.getItem('token');
       const response = await fetch('/api/admin/users', {
@@ -204,7 +204,7 @@ const UserManagementSection = () => {
     return (
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h2>
-        <p className="text-gray-600">You don't have permission to access this section.</p>
+        <p className="text-gray-600">You don&apos;t have permission to access this section.</p>
       </div>
     );
   }
@@ -394,7 +394,7 @@ const UserManagementSection = () => {
                 <p className="text-sm text-gray-600">This action cannot be undone</p>
               </div>
             </div>
-            
+
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
               <p className="text-sm text-gray-700 mb-2">
                 Are you sure you want to permanently delete this user?
@@ -462,16 +462,14 @@ const UserManagementSection = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                    user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
-                  }`}>
+                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                    }`}>
                     {user.role}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                    user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                  }`}>
+                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    }`}>
                     {user.isActive ? 'Active' : 'Inactive'}
                   </span>
                 </td>
@@ -496,9 +494,8 @@ const UserManagementSection = () => {
                     <button
                       onClick={() => toggleUserStatus(user._id, user.isActive)}
                       disabled={currentUser?.email === user.email}
-                      className={`${
-                        user.isActive ? 'text-orange-600 hover:text-orange-900' : 'text-green-600 hover:text-green-900'
-                      } disabled:opacity-40 disabled:cursor-not-allowed`}
+                      className={`${user.isActive ? 'text-orange-600 hover:text-orange-900' : 'text-green-600 hover:text-green-900'
+                        } disabled:opacity-40 disabled:cursor-not-allowed`}
                       title={currentUser?.email === user.email ? "You can't deactivate your own account" : user.isActive ? 'Deactivate' : 'Activate'}
                     >
                       {user.isActive ? (

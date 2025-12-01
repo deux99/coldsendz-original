@@ -75,75 +75,42 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
 
   const renderNavSection = (items: typeof navigation, title: string, startIndex = 0) => (
     <div className="mb-8">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+      <div className="flex items-center justify-between mb-4 px-4">
+        <h2 className="text-xs uppercase tracking-wider text-slate-400 font-bold">
           {title}
         </h2>
-        <div className="w-12 h-px bg-gradient-to-r from-slate-200 to-transparent"></div>
       </div>
-      
-      <nav className="space-y-2">
+
+      <nav className="space-y-1">
         {items.map((item, index) => (
           <button
             key={item.id}
             onClick={() => onSectionChange(item.id)}
-            className={`group relative w-full flex items-center px-4 py-4 text-left rounded-2xl transition-all duration-300 ease-out ${
-              activeSection === item.id
-                ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-xl shadow-blue-500/25 transform scale-[1.02]'
-                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 hover:shadow-lg hover:shadow-slate-200/50 hover:scale-[1.01]'
-            }`}
+            className={`group relative w-full flex items-center px-4 py-3 text-left rounded-xl transition-all duration-200 ease-out ${activeSection === item.id
+                ? 'bg-primary-50 text-primary-700'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+              }`}
             style={{
               animationDelay: `${(startIndex + index) * 50}ms`
             }}
           >
-            {/* Background glow effect for active item */}
+            {/* Active Indicator Bar */}
             {activeSection === item.id && (
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-2xl blur-xl opacity-20 -z-10"></div>
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary-600 rounded-r-full"></div>
             )}
-            
-            {/* Icon container */}
-            <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center mr-4 transition-all duration-300 ${
-              activeSection === item.id 
-                ? 'bg-white/20 shadow-lg' 
-                : 'bg-slate-100 group-hover:bg-white group-hover:shadow-md'
-            }`}>
-              <div className={`transition-all duration-300 ${
-                activeSection === item.id ? 'text-white' : 'text-slate-500 group-hover:text-blue-600'
+
+            {/* Icon */}
+            <div className={`mr-3 transition-colors duration-200 ${activeSection === item.id ? 'text-primary-600' : 'text-slate-400 group-hover:text-slate-600'
               }`}>
-                {getIcon(item.icon)}
-              </div>
+              {getIcon(item.icon)}
             </div>
-            
+
             {/* Content */}
             <div className="flex-1 min-w-0">
-              <div className={`font-semibold text-sm transition-all duration-300 ${
-                activeSection === item.id ? 'text-white' : 'text-slate-700 group-hover:text-slate-900'
-              }`}>
+              <div className="font-medium text-sm">
                 {item.name}
               </div>
-              <div className={`text-xs transition-all duration-300 ${
-                activeSection === item.id ? 'text-blue-100' : 'text-slate-500 group-hover:text-slate-600'
-              }`}>
-                {item.description}
-              </div>
             </div>
-            
-            {/* Active indicator */}
-            {activeSection === item.id && (
-              <div className="flex items-center space-x-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse"></div>
-                <div className="w-1 h-1 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              </div>
-            )}
-            
-            {/* Hover arrow */}
-            {activeSection !== item.id && (
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-                <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            )}
           </button>
         ))}
       </nav>
@@ -151,29 +118,36 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
   );
 
   return (
-    <div className="w-80 h-screen bg-gradient-to-b from-slate-50 to-white border-r border-slate-200/60 flex flex-col overflow-hidden backdrop-blur-xl">
+    <div className="w-72 h-screen bg-white border-r border-slate-200 flex flex-col overflow-hidden z-20 shadow-soft">
       {/* Brand Header */}
-      <div className="p-8 flex-shrink-0 border-b border-slate-100">
-        <div className="flex items-center space-x-4">
+      <div className="p-6 flex-shrink-0">
+        <div className="flex items-center space-x-3">
           <div className="relative">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-              <span className="text-white text-xl font-bold">C</span>
+            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+              <span className="text-white text-lg font-bold">C</span>
             </div>
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white"></div>
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white"></div>
           </div>
           <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold text-slate-900 tracking-tight">
               ColdSendz
             </h1>
-            <p className="text-sm text-slate-500 font-medium">Professional Email Platform</p>
+            <p className="text-xs text-slate-500 font-medium">Pro Edition</p>
           </div>
         </div>
       </div>
-      
+
       {/* Navigation */}
-      <div className="flex-1 px-6 py-8 overflow-y-auto scrollbar-hide">
+      <div className="flex-1 px-4 py-6 overflow-y-auto scrollbar-hide">
         {renderNavSection(navigation, 'Dashboard')}
         {isAdmin && renderNavSection(adminNavigation, 'Administration', navigation.length)}
+      </div>
+
+      {/* Footer / Version */}
+      <div className="p-4 border-t border-slate-100">
+        <div className="bg-slate-50 rounded-lg p-4">
+          <p className="text-xs text-slate-500 text-center">v2.0.0 &copy; 2025</p>
+        </div>
       </div>
     </div>
   );

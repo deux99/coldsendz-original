@@ -36,9 +36,9 @@ const LoginPage = () => {
       if (data.success) {
         // Use the auth context login method
         authLogin(data.token, data.user);
-        
+
         toast.success('Login successful!');
-        
+
         // Use replace to avoid back button issues
         setTimeout(() => {
           router.replace('/');
@@ -57,28 +57,29 @@ const LoginPage = () => {
   return (
     <>
       <Head>
-        <title>Login - Cold Email Sender</title>
+        <title>Login - ColdSendz</title>
         <meta name="description" content="Login to your cold email sender account" />
       </Head>
-      
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
-        <div className="max-w-md w-full space-y-8">
-          <div className="bg-white rounded-xl shadow-lg p-8">
+
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 relative overflow-hidden">
+        {/* Background Mesh Gradient */}
+        <div className="absolute inset-0 bg-mesh opacity-60"></div>
+
+        <div className="max-w-md w-full space-y-8 relative z-10">
+          <div className="glass p-8 rounded-2xl animate-fade-in">
             {/* Header */}
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary-500/30">
+                <span className="text-white text-3xl font-bold">C</span>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
-              <p className="text-gray-600 mt-2">Sign in to your account</p>
+              <h2 className="text-2xl font-bold text-slate-900">Welcome Back</h2>
+              <p className="text-slate-500 mt-2">Sign in to your account</p>
             </div>
 
             {/* Login Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
                   Email Address
                 </label>
                 <input
@@ -87,13 +88,13 @@ const LoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all duration-200 text-slate-900 placeholder-slate-400"
                   placeholder="Enter your email"
                 />
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-2">
                   Password
                 </label>
                 <input
@@ -102,7 +103,7 @@ const LoginPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all duration-200 text-slate-900 placeholder-slate-400"
                   placeholder="Enter your password"
                 />
               </div>
@@ -110,7 +111,7 @@ const LoginPage = () => {
               <button
                 type="submit"
                 disabled={isLoading || !email || !password}
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+                className="w-full bg-gradient-to-r from-primary-600 to-indigo-600 text-white py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-primary-500/30 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold transform hover:-translate-y-0.5"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center">
@@ -127,14 +128,16 @@ const LoginPage = () => {
             </form>
 
             {/* Footer */}
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
-                Don't have an account? Contact your administrator to create one.
+            <div className="mt-8 text-center">
+              <p className="text-sm text-slate-500">
+                Don&apos;t have an account? <span className="text-primary-600 font-medium">Contact admin</span>
               </p>
             </div>
           </div>
 
-          {/* Demo credentials removed per request */}
+          <p className="text-center text-xs text-slate-400">
+            &copy; 2025 ColdSendz. All rights reserved.
+          </p>
         </div>
       </div>
     </>
